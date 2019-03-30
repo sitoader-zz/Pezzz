@@ -1,0 +1,13 @@
+/*
+ * Copyright (c) 2009-2018 digi.me Limited. All rights reserved.
+ */
+
+apply from: project.file('../config/shared/shared.gradle')
+
+ext {
+    exports = [
+            globalEndpoint: "api.digi.me"
+    ]
+}
+
+exports.globalEndpoint = fetchProp(new Properties(),'../config/props/internal.properties', 'argon_endpoint', exports.globalEndpoint)

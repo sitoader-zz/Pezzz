@@ -1,0 +1,93 @@
+/*
+ * Copyright (c) 2009-2018 digi.me Limited. All rights reserved.
+ */
+
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+@SuppressWarnings(["GrMethodMayBeStatic", "GroovyUnusedDeclaration"])
+def isSnapshot() {
+    return project.ext.globalVersion.contains("SNAPSHOT")
+}
+
+def repositoryKey = getDefaultRepositoryKey()
+def aUsername = getRepoUsername()
+def aPass = getRepoPassword()
+
+def getDefaultRepositoryKey() {
+    if (this.isSnapshot()) {
+        return  !getPubProperty("SNAPSHOT_KEY").isEmpty() ? getPubProperty("SNAPSHOT_KEY") : "libs-snapshot-local"
+    } else {
+        return  !getPubProperty("RELEASE_KEY").isEmpty() ? getPubProperty("RELEASE_KEY") : "libs-release-local"
+    }
+}
+
+def getLocalProperty(prop) {
+    if (project.rootProject.file('local.properties').canRead()) {
+        def properties = new Properties();
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        return properties.getProperty(prop)
+    }
+    return ""
+}
+
+def getPubProperty(prop) {
+    if (project.file('../config/props/pub.properties').canRead()) {
+        def properties = new Properties();
+        properties.load(project.file('../config/props/pub.properties').newDataInputStream())
+        return properties.getProperty(prop)
+    }
+    return ""
+}
+
+def getRepository() {
+    return getLocalProperty("DEPLOY_URL")
+}
+
+def getRepoUsername() {
+    return System.env['DIGIME_SDK_REPO_USERNAME'] != null ? System.env['DIGIME_SDK_REPO_USERNAME'] : getLocalProperty("REPO_USERNAME")
+}
+
+def getRepoPassword() {
+    return System.env['DIGIME_SDK_REPO_PASSWORD'] != null ? System.env['DIGIME_SDK_REPO_PASSWORD'] : getLocalProperty("REPO_PASSWORD")
+}
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId 'me.digi.sdk'
+            version = project.version
+            artifactId project.getName()
+
+            artifact("$buildDir/outputs/aar/${project.getName()}-${project.ext.globalVersion}.aar")
+
+            pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.moduleGroup)
+                    dependency.appendNode('artifactId', it.moduleName)
+                    dependency.appendNode('version', it.moduleVersion)
+                }
+            }
+        }
+    }
+}
+
+artifactory {
+    contextUrl = getRepository()
+    publish {
+        repository {
+            repoKey = repositoryKey
+            username = aUsername
+            password = aPass
+        }
+        defaults {
+            publications('aar')
+            publishArtifacts = true
+
+            properties = ['qa.level': 'basic', 'dev.team': 'core']
+            publishPom = true
+        }
+    }
+}

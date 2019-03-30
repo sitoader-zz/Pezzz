@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2009-2018 digi.me Limited. All rights reserved.
+  -->
+
+<resources>
+    <string name="app_name">Consent Access Demo</string>
+    <string name="title_activity_callback">Demo Using Callbacks</string>
+    <string name="starting_string">Starting…</string>
+    <string name="run_callback_demo">Run Callback demo</string>
+    <string name="button_start">Start</string>
+    <string name="session_created">Session created… Authorizing…</string>
+    <string name="session_authorized">Session authorized!\nFetching file list…</string>
+    <string name="auth_declined">Authorization declined</string>
+    <string name="fetch_accounts">Fetching service account details…</string>
+    <string name="account_fail">Could not fetch account info</string>
+    <plurals name="files_retrieved">
+        <item quantity="one">File list retrieved: %d file</item>
+        <item quantity="other">File list retrieved: %d files</item>
+    </plurals>
+</resources>

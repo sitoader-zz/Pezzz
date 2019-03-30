@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2009-2018 digi.me Limited. All rights reserved.
+ */
+
+apply from: 'config/gradle/versioning.gradle'
+
+apply from: 'config/gradle/checkstyle.gradle'
+
+buildscript {
+    // Gradle will not find vars defined in an external file when referring to them
+    // in the buildscript block, unless you link it from the buildscript block, too.
+    apply from: 'config/gradle/versioning.gradle'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.androidGradlePlugin"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:$versions.buildInfoExtractor"
+    }
+}
+
+allprojects {
+    group = 'me.digi.sdk'
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
+    project.ext {
+        globalVersion = "unspecified"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
