@@ -1,9 +1,4 @@
-/*
- * Copyright (c) 2009-2018 digi.me Limited. All rights reserved.
- */
 
-include ':digime-core'
-include ':digime-crypto'
-include ':examples:consent-access'
-include ':examples:consent-access-no-sdk'
 
+
+include 'Application'
