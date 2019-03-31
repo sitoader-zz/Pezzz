@@ -33,14 +33,29 @@
         android:layout_height="0px"
         android:layout_weight="2"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/patientData">
 
-        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_centerHorizontal="true" android:text="Hello world" android:id="@+id/txtDisplay"/>
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"  android:text="Loading data" android:layout_marginLeft="20dp" android:id="@+id/txtDisplay1"/>
 
+        <TextView
+            android:id="@+id/txtDisplay2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="70dp" />
+
+        <TextView
+            android:id="@+id/txtDisplay3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="140dp" />
         <ProgressBar android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/progressBar" android:layout_centerInParent="true" style="?android:attr/progressBarStyleLarge"/>
-
 
 
     </RelativeLayout>

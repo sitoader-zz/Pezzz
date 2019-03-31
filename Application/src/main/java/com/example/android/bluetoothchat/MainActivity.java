@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.ViewAnimator;
 
 import com.example.android.common.activities.SampleActivityBase;
@@ -57,7 +58,7 @@ public class MainActivity  extends SampleActivityBase{
 
     // Whether the Log Fragment is currently shown
     private boolean mLogShown;
-    private TextView txtShowTextResult;
+    private TextView txtShowTextResult1,txtShowTextResult2,txtShowTextResult3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,10 @@ public class MainActivity  extends SampleActivityBase{
             transaction.commit();
         }
         //Intent intent = getIntent();
-        txtShowTextResult = findViewById(R.id.txtDisplay);
+        txtShowTextResult1 = findViewById(R.id.txtDisplay1);
+        txtShowTextResult2 = findViewById(R.id.txtDisplay2);
+        txtShowTextResult3 = findViewById(R.id.txtDisplay3);
+
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final String url = "https://pezzzapi.herokuapp.com/api/getcurrentmeds?id=959595";
@@ -81,13 +85,31 @@ public class MainActivity  extends SampleActivityBase{
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.patientData);
+                    StringBuilder formattedResult = new StringBuilder();
+                    JSONArray responseJSONArray = response.getJSONObject("message").getJSONArray("meds");
+                //    for (int i = 0; i < responseJSONArray.length(); i++) {
+                   //     formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("name"));
+                    //    TextView txt1 = new TextView(MainActivity.this)
 
-//                    StringBuilder formattedResult = new StringBuilder();
-//                    JSONArray responseJSONArray = response.getJSONArray("results");
-//                    for (int i = 0; i < responseJSONArray.length(); i++) {
-//                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
-//                    }
-                    txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
+                    txtShowTextResult1.setText("\n" + responseJSONArray.getJSONObject(0).get("name")+
+                            "\nPills per day:" + responseJSONArray.getJSONObject(0).getJSONObject("timeTable").get("timesPerDay")
+                            + "\nPeriod:" + responseJSONArray.getJSONObject(0).getJSONObject("timeTable").get("numberOfDays"));
+                    txtShowTextResult2.setText("\n" + responseJSONArray.getJSONObject(1).get("name")+
+                            "\nPills per day:" + responseJSONArray.getJSONObject(1).getJSONObject("timeTable").get("timesPerDay")
+                            + "\nPeriod:" + responseJSONArray.getJSONObject(1).getJSONObject("timeTable").get("numberOfDays"));
+                    txtShowTextResult3.setText("\n" + responseJSONArray.getJSONObject(2).get("name")+
+                            "\nPills per day:" + responseJSONArray.getJSONObject(2).getJSONObject("timeTable").get("timesPerDay")
+                            + "\nPeriod:" + responseJSONArray.getJSONObject(2).getJSONObject("timeTable").get("numberOfDays"));
+
+                        //linearLayout.setBackgroundColor(Color.TRANSPARENT);
+//                        relativeLayout.addView(txt1);
+//                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                        params.setMargins(100,100,100,100);
+//
+//                        txt1.setLayoutParams(params);
+                 //   }
+                 //   txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -96,7 +118,7 @@ public class MainActivity  extends SampleActivityBase{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                txtShowTextResult.setText("An Error occured while making the request");
+               txtShowTextResult1.setText("An Error occured while making the request");
             }
         });
         requestQueue.add(jsonObjectRequest);
