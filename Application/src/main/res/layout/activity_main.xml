@@ -38,7 +38,7 @@
         android:layout_height="match_parent"
         android:id="@+id/patientData">
 
-        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"  android:text="Loading data" android:layout_marginLeft="20dp" android:id="@+id/txtDisplay1"/>
+        <TextView android:layout_height="wrap_content" android:layout_width="wrap_content"   android:textColor="@android:color/holo_blue_dark" android:text="Loading data" android:layout_marginLeft="20dp" android:id="@+id/txtDisplay1"/>
 
         <TextView
             android:id="@+id/txtDisplay2"
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:layout_marginLeft="20dp"
+            android:textColor="@android:color/holo_blue_dark"
             android:layout_marginBottom="70dp" />
 
         <TextView
@@ -53,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="140dp"
+            android:textColor="@android:color/holo_blue_dark"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="140dp" />
         <ProgressBar android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/progressBar" android:layout_centerInParent="true" style="?android:attr/progressBarStyleLarge"/>
