@@ -33,11 +33,6 @@ public class GetDataActivity extends AppCompatActivity{
             public void onResponse(JSONObject response) {
                 try {
 
-//                    StringBuilder formattedResult = new StringBuilder();
-//                    JSONArray responseJSONArray = response.getJSONArray("results");
-//                    for (int i = 0; i < responseJSONArray.length(); i++) {
-//                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
-//                    }
                     txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();

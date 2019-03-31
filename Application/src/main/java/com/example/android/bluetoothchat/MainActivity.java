@@ -51,7 +51,7 @@ import android.content.Intent;
  * For devices with displays with a width of 720dp or greater, the sample log is always visible,
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
-public class MainActivity  extends AppCompatActivity{
+public class MainActivity  extends SampleActivityBase{
 
     public static final String TAG = "MainActivity";
 
@@ -71,35 +71,35 @@ public class MainActivity  extends AppCompatActivity{
             transaction.commit();
         }
         //Intent intent = getIntent();
-//        txtShowTextResult = findViewById(R.id.txtDisplay);
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        final String url = "https://pezzzapi.herokuapp.com/api/getcurrentmeds?id=959595";
-//
-//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                try {
-//
-////                    StringBuilder formattedResult = new StringBuilder();
-////                    JSONArray responseJSONArray = response.getJSONArray("results");
-////                    for (int i = 0; i < responseJSONArray.length(); i++) {
-////                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
-////                    }
-//                    txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                findViewById(R.id.progressBar).setVisibility(View.GONE);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                txtShowTextResult.setText("An Error occured while making the request");
-//            }
-//        });
-//        requestQueue.add(jsonObjectRequest);
+        txtShowTextResult = findViewById(R.id.txtDisplay);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        final String url = "https://pezzzapi.herokuapp.com/api/getcurrentmeds?id=959595";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+//                    StringBuilder formattedResult = new StringBuilder();
+//                    JSONArray responseJSONArray = response.getJSONArray("results");
+//                    for (int i = 0; i < responseJSONArray.length(); i++) {
+//                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
+//                    }
+                    txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                txtShowTextResult.setText("An Error occured while making the request");
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
 
     }
 
@@ -112,8 +112,8 @@ public class MainActivity  extends AppCompatActivity{
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem logToggle = menu.findItem(R.id.menu_toggle_log);
-        //  logToggle.setVisible(findViewById(R.id.sample_output) instanceof ViewAnimator);
-        // logToggle.setTitle(mLogShown ? R.string.sample_hide_log : R.string.sample_show_log);
+    //      logToggle.setVisible(findViewById(R.id.sample_output) instanceof ViewAnimator);
+    //     logToggle.setTitle(mLogShown ? R.string.sample_hide_log : R.string.sample_show_log);
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -122,7 +122,7 @@ public class MainActivity  extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.menu_toggle_log:
-//                mLogShown = !mLogShown;
+                mLogShown = !mLogShown;
 //                ViewAnimator output = (ViewAnimator) findViewById(R.id.sample_output);
 //                if (mLogShown) {
 //                    output.setDisplayedChild(1);
