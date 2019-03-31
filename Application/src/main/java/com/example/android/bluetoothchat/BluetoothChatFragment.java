@@ -310,10 +310,10 @@ public class BluetoothChatFragment extends Fragment {
                             Toast.makeText(activity, "You took your medicine, good!", Toast.LENGTH_SHORT).show();
                             break;
                         case Constants.MESSAGE_ABUSED:
-                            Toast.makeText(activity, "You took your medicine, good!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "You want too much medicine, naughty!", Toast.LENGTH_SHORT).show();
                             break;
                         case Constants.MESSAGE_FORGOTTEN:
-                            Toast.makeText(activity, "You want too much medicine, naughty!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "You forgot your medicine, bad!", Toast.LENGTH_SHORT).show();
                             break;
                         default:
                             break;
