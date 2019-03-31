@@ -32,4 +32,9 @@
         android:showAsAction="never"
         android:title="@string/discoverable"/>
 
+    <item
+        android:id="@+id/ring"
+        android:showAsAction="ifRoom"
+        android:title="@string/ring"/>
+
 </menu>

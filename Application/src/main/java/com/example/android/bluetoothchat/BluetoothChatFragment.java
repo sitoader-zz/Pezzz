@@ -408,6 +408,17 @@ public class BluetoothChatFragment extends Fragment {
                 ensureDiscoverable();
                 return true;
             }
+            case R.id.ring: {
+                // Send a message using content of the edit text widget
+                View view = getView();
+                if (null != view) {
+                    TextView textView = (TextView) view.findViewById(R.id.edit_text_out);
+                    String message = Constants.MESSAGE_RING;
+                    sendMessage(message);
+                }
+                return true;
+            }
+
         }
         return false;
     }
