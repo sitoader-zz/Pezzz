@@ -305,7 +305,20 @@ public class BluetoothChatFragment extends Fragment {
                     byte[] readBuf = (byte[]) msg.obj;
                     // construct a string from the valid bytes in the buffer
                     String readMessage = new String(readBuf, 0, msg.arg1);
-                    mConversationArrayAdapter.add(mConnectedDeviceName + ":  " + readMessage);
+                    switch (readMessage) {
+                        case Constants.MESSAGE_TAKEN:
+                            Toast.makeText(activity, "You took your medicine, good!", Toast.LENGTH_SHORT).show();
+                            break;
+                        case Constants.MESSAGE_ABUSED:
+                            Toast.makeText(activity, "You took your medicine, good!", Toast.LENGTH_SHORT).show();
+                            break;
+                        case Constants.MESSAGE_FORGOTTEN:
+                            Toast.makeText(activity, "You want too much medicine, naughty!", Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            break;
+                    }
+                    mConversationArrayAdapter.add("Dispezzzer:  " + readMessage);
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
