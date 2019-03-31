@@ -56,6 +56,9 @@ public class BluetoothChatFragment extends Fragment {
     private static final int REQUEST_CONNECT_DEVICE_INSECURE = 2;
     private static final int REQUEST_ENABLE_BT = 3;
 
+    // Patient data as loaded from the server and passed to the fragment
+    String PATIENT_DATA;
+
     // Layout Views
     private ListView mConversationView;
     private EditText mOutEditText;
@@ -143,6 +146,8 @@ public class BluetoothChatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        PATIENT_DATA = getArguments().getString("PATIENT_DATA");
+
         return inflater.inflate(R.layout.fragment_bluetooth_chat, container, false);
     }
 
@@ -284,6 +289,8 @@ public class BluetoothChatFragment extends Fragment {
                     switch (msg.arg1) {
                         case BluetoothChatService.STATE_CONNECTED:
                             setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
+                            String message = Constants.MESSAGE_CONFIGURE + Constants.MESSAGE_DELIMITER + PATIENT_DATA;
+                            BluetoothChatFragment.this.sendMessage(message);
                             mConversationArrayAdapter.clear();
                             break;
                         case BluetoothChatService.STATE_CONNECTING:

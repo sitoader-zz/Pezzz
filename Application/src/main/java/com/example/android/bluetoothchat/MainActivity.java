@@ -55,6 +55,7 @@ import android.content.Intent;
 public class MainActivity  extends SampleActivityBase{
 
     public static final String TAG = "MainActivity";
+    Bundle bundle = new Bundle();
 
     // Whether the Log Fragment is currently shown
     private boolean mLogShown;
@@ -65,12 +66,6 @@ public class MainActivity  extends SampleActivityBase{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            BluetoothChatFragment fragment = new BluetoothChatFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
-            transaction.commit();
-        }
         //Intent intent = getIntent();
         txtShowTextResult1 = findViewById(R.id.txtDisplay1);
         txtShowTextResult2 = findViewById(R.id.txtDisplay2);
@@ -110,6 +105,8 @@ public class MainActivity  extends SampleActivityBase{
 //                        txt1.setLayoutParams(params);
                  //   }
                  //   txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
+
+                    bundle.putString("PATIENT_DATA", response.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -118,11 +115,18 @@ public class MainActivity  extends SampleActivityBase{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               txtShowTextResult1.setText("An Error occured while making the request");
+               txtShowTextResult1.setText("An Error occurred while making the request");
             }
         });
         requestQueue.add(jsonObjectRequest);
 
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            BluetoothChatFragment fragment = new BluetoothChatFragment();
+            fragment.setArguments(bundle);
+            transaction.replace(R.id.sample_content_fragment, fragment);
+            transaction.commit();
+        }
     }
 
     @Override
