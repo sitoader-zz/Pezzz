@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\iulia\\Desktop\\hackathon\\android-BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "C:\\Users\\iulia\\Desktop\\hackathon\\Pezzz\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\iulia\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.0.2.aar\\198a097c88fcf691c4e27d7c460922d9\\res\\values-v21\\values-v21.xml",
@@ -61,7 +61,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\iulia\\Desktop\\hackathon\\android-BluetoothChat\\Application\\src\\main\\res\\values-v21\\base-template-styles.xml",
+                    "source": "C:\\Users\\iulia\\Desktop\\hackathon\\Pezzz\\Application\\src\\main\\res\\values-v21\\base-template-styles.xml",
                     "from": {
                         "startLines": "20",
                         "startColumns": "4",

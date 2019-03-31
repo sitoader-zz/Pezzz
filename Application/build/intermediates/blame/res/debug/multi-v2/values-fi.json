@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\iulia\\Desktop\\hackathon\\android-BluetoothChat\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fi\\values-fi.xml",
+            "outputFile": "C:\\Users\\iulia\\Desktop\\hackathon\\Pezzz\\Application\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-fi\\values-fi.xml",
             "map": [
                 {
                     "source": "C:\\Users\\iulia\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\804570680eb4b0194b70a231d005660d\\res\\values-fi\\values-fi.xml",

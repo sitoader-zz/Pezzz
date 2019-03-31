@@ -1,4 +1,4 @@
-#Sat Mar 30 23:12:31 EET 2019
-base.0=C\:\\Users\\iulia\\Desktop\\hackathon\\android-BluetoothChat\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Sun Mar 31 01:59:41 EET 2019
+base.0=C\:\\Users\\iulia\\Desktop\\hackathon\\Pezzz\\Application\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

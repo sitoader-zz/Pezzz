@@ -43,6 +43,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import android.content.Intent;
 /**
  * A simple launcher activity containing a summary sample description, sample log and a custom
  * {@link android.support.v4.app.Fragment} which can display a view.
@@ -50,7 +51,7 @@ import com.android.volley.toolbox.Volley;
  * For devices with displays with a width of 720dp or greater, the sample log is always visible,
  * on other devices it's visibility is controlled by an item on the Action Bar.
  */
-public class MainActivity extends SampleActivityBase {
+public class MainActivity  extends AppCompatActivity{
 
     public static final String TAG = "MainActivity";
 
@@ -69,36 +70,36 @@ public class MainActivity extends SampleActivityBase {
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
         }
-
-        txtShowTextResult = findViewById(R.id.txtDisplay);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://pezzzapi.herokuapp.com/";
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-
-//                    StringBuilder formattedResult = new StringBuilder();
-//                    JSONArray responseJSONArray = response.getJSONArray("results");
-//                    for (int i = 0; i < responseJSONArray.length(); i++) {
-//                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
-//                    }
-                    txtShowTextResult.setText("List of Restaurants \n" + " Name" + "\t Rating \n" + response.get("message"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                findViewById(R.id.progressBar).setVisibility(View.GONE);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                txtShowTextResult.setText("An Error occured while making the request");
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
+        //Intent intent = getIntent();
+//        txtShowTextResult = findViewById(R.id.txtDisplay);
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        final String url = "https://pezzzapi.herokuapp.com/api/getcurrentmeds?id=959595";
+//
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//
+////                    StringBuilder formattedResult = new StringBuilder();
+////                    JSONArray responseJSONArray = response.getJSONArray("results");
+////                    for (int i = 0; i < responseJSONArray.length(); i++) {
+////                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
+////                    }
+//                    txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                findViewById(R.id.progressBar).setVisibility(View.GONE);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                txtShowTextResult.setText("An Error occured while making the request");
+//            }
+//        });
+//        requestQueue.add(jsonObjectRequest);
 
     }
 

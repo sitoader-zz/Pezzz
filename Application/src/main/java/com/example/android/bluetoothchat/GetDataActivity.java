@@ -20,23 +20,25 @@ public class GetDataActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.data_main2);
+        setContentView(R.layout.data_main);
 
         txtShowTextResult = findViewById(R.id.txtDisplay);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final String url = "https://pezzzapi.herokuapp.com/";
+        final String url = "https://pezzzapi.herokuapp.com/api/getcurrentmeds?id=959595";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    StringBuilder formattedResult = new StringBuilder();
-                    JSONArray responseJSONArray = response.getJSONArray("results");
-                    for (int i = 0; i < responseJSONArray.length(); i++) { formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
-                    }
-                    txtShowTextResult.setText("List of Restaurants \n" + " Name" + "\t Rating \n" + formattedResult);
+
+//                    StringBuilder formattedResult = new StringBuilder();
+//                    JSONArray responseJSONArray = response.getJSONArray("results");
+//                    for (int i = 0; i < responseJSONArray.length(); i++) {
+//                        formattedResult.append("\n" + responseJSONArray.getJSONObject(i).get("success") + "=> \t" + responseJSONArray.getJSONObject(i).get("message"));
+//                    }
+                    txtShowTextResult.setText("Patient Data: \n" + response.get("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
